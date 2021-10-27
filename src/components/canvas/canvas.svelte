@@ -1,5 +1,4 @@
 <script>
-  import Pixel from './pixel.svelte';
   export let color;
   let canDraw = false;
   const setCanDraw = () => canDraw = !canDraw
@@ -11,11 +10,16 @@
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
+    const bodyRect = document.body.getBoundingClientRect();
+    const canvasPosition = canvas.getBoundingClientRect();
+    const canvasOffsetTop  = canvasPosition.top - bodyRect.top;
+    const canvasOffsetRight  = canvasPosition.left - bodyRect.left;
+
     const paint = (color, canDraw) => {
       var e = window.event;
-      console.log(canDraw)
+      console.log(e.clientY)
       ctx.fillStyle = color;
-      if (canDraw) ctx.fillRect(e.clientX - e.clientX/1.2, e.clientY - 200, 2, 2);
+      if (canDraw) ctx.fillRect(e.clientX - canvasPosition.left, e.clientY - canvasOffsetTop, 2, 2);
     }
   </script>
 </div>
