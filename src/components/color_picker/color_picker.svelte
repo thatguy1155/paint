@@ -43,6 +43,8 @@
   .picker-wrapper{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width:100px;
+    margin-top: 4px;
   }
 </style>

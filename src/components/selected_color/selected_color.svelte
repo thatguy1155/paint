@@ -10,11 +10,17 @@
 <style>
   .selected-color{
     width:50px;
-    height:30px
+    height:30px;
   }
   .selected-color-display{
     color: #627D98;
     border: 1px solid #627D98;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
   }
   .selected-title{
     text-decoration: underline;

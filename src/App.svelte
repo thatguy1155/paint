@@ -36,5 +36,7 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    align-items: center;
+    justify-content:center;
   }
 </style>
