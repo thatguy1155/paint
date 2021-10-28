@@ -15,11 +15,18 @@
     const canvasOffsetTop  = canvasPosition.top - bodyRect.top;
     const canvasOffsetRight  = canvasPosition.left - bodyRect.left;
 
-    const paint = (color, canDraw) => {
+    function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+        y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+    };
+}
+    const paint = (color, canDraw,e) => {
       var e = window.event;
-      console.log(e.clientY)
+      const mousePos = getMousePos(canvas,e)
       ctx.fillStyle = color;
-      if (canDraw) ctx.fillRect(e.clientX - canvasPosition.left, e.clientY - canvasOffsetTop, 2, 2);
+      if (canDraw) ctx.fillRect(mousePos.x, mousePos.y, 2, 2);
     }
   </script>
 </div>
