@@ -1,11 +1,21 @@
 <script>
   export let color;
+  export let clear;
   let canDraw = false;
-  const setCanDraw = () => canDraw = !canDraw
+  const setCanDraw = () => canDraw = !canDraw;
+
+  $: if (clear) clearCanvasElement();
+
+  const clearCanvasElement = () => {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  
+  
 </script>
 
 <div class="canvas-wrapper">
-  <canvas id="canvas" on:mousedown={() => setCanDraw()} on:mouseup={() => setCanDraw()} on:mousemove={() => paint(color,canDraw)}></canvas>
+  <canvas id="canvas" on:clearCanvas={() => clearCanvasElement()} on:mousedown={() => setCanDraw()} on:mouseup={() => setCanDraw()} on:mousemove={() => paint(color,canDraw)}></canvas>
   <script> 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -28,6 +38,7 @@
       ctx.fillStyle = color;
       if (canDraw) ctx.fillRect(mousePos.x, mousePos.y, 2, 2);
     }
+
   </script>
 </div>
 

@@ -3,16 +3,31 @@
   import Canvas from './components/canvas/canvas.svelte';
   import ColorPicker from './components/color_picker/color_picker.svelte';
   import SelectedColor from './components/selected_color/selected_color.svelte';
-  let selectedColor = "#FFFFFF"
+  import ClearButton from './components/clear_button.svelte';
+
+  //state
+  let selectedColor = "#FFFFFF";
+  let clear = false;
+
+  //methods
+  const clearCanvas = () => {
+    clear = true;
+    setTimeout(function(){ clear = false }, 500);
+  }
+
   const selectColor = e => {
-    selectedColor = e.detail
-    console.log(selectedColor)
+    selectedColor = e.detail;
   }
 </script>
 <svelte:body/>
 <Header />
 <div class="main-wrapper">
-  <Canvas color={selectedColor}/>
+  <div class="canvas-wrapper">
+    <Canvas clear={clear} color={selectedColor}/>
+    <div class="bottom-content">
+      <ClearButton on:clear={clearCanvas} />
+    </div>
+  </div>
   <div class="color-container">
     <SelectedColor color={selectedColor} />
     <ColorPicker on:selectColor={selectColor}/>
@@ -38,5 +53,15 @@
     flex-direction: column;
     align-items: center;
     justify-content:center;
+  }
+  .canvas-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+  .bottom-content{
+    display:flex;
+    align-items: center;
+    width:100%;
+    height: 100px;
   }
 </style>
