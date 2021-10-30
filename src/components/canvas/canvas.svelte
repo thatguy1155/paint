@@ -1,6 +1,7 @@
 <script>
   export let color;
   export let clear;
+  export let brushSize;
   let canDraw = false;
   const setCanDraw = () => canDraw = !canDraw;
 
@@ -15,7 +16,7 @@
 </script>
 
 <div class="canvas-wrapper">
-  <canvas id="canvas" on:clearCanvas={() => clearCanvasElement()} on:mousedown={() => setCanDraw()} on:mouseup={() => setCanDraw()} on:mousemove={() => paint(color,canDraw)}></canvas>
+  <canvas id="canvas" on:clearCanvas={() => clearCanvasElement()} on:mousedown={() => setCanDraw()} on:mouseup={() => setCanDraw()} on:mousemove={() => paint(brushSize,color,canDraw)}></canvas>
   <script> 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -32,11 +33,11 @@
         y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
     };
 }
-    const paint = (color, canDraw,e) => {
+    const paint = (brushSize, color, canDraw, e) => {
       var e = window.event;
       const mousePos = getMousePos(canvas,e)
       ctx.fillStyle = color;
-      if (canDraw) ctx.fillRect(mousePos.x, mousePos.y, 2, 2);
+      if (canDraw) ctx.fillRect(mousePos.x, mousePos.y, brushSize, brushSize);
     }
 
   </script>

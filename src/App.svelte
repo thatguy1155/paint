@@ -4,10 +4,12 @@
   import ColorPicker from './components/color_picker/color_picker.svelte';
   import SelectedColor from './components/selected_color/selected_color.svelte';
   import ClearButton from './components/clear_button.svelte';
+  import BrushSize from './components/brush_size.svelte';
 
   //state
   let selectedColor = "#FFFFFF";
   let clear = false;
+  let brushSize = 5;
 
   //methods
   const clearCanvas = () => {
@@ -18,14 +20,18 @@
   const selectColor = e => {
     selectedColor = e.detail;
   }
+  const setBrushSize = e => {
+    brushSize = e.detail;
+  }
 </script>
 <svelte:body/>
 <Header />
 <div class="main-wrapper">
   <div class="canvas-wrapper">
-    <Canvas clear={clear} color={selectedColor}/>
+    <Canvas brushSize={brushSize} clear={clear} color={selectedColor}/>
     <div class="bottom-content">
       <ClearButton on:clear={clearCanvas} />
+      <BrushSize on:brushSize={setBrushSize} />
     </div>
   </div>
   <div class="color-container">
