@@ -1,4 +1,6 @@
 <script>
+  import Plus from '../assets/plus.svelte';
+  import Minus from '../assets/minus.svelte';
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
   const handleClick = () => {
@@ -7,20 +9,44 @@
   let value = 5;
 </script>
 <div class="slidecontainer">
+  <p>brush size</p>
+  <div class="size-label">
+    <Minus/>
+    <span>-</span>
+    <span>-</span>
+    <span>-</span>
+    <span>-</span>
+    <Plus/>
+  </div>
   <input type="range" min="1" max="50" on:change={() => handleClick()} bind:value={value} class="slider" id="myRange">
 </div>
 
 <style>
+  /* not slider styling */
+ 
+  /*slider */
   .slidecontainer {
-  width: 100%; /* Width of the outside container */
-}
+    width: 100%; /* Width of the outside container */
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    color:aliceblue;
+  }
+
+  .size-label{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
 
 /* The slider itself */
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 25px; /* Specified height */
+    height: 15px; /* Specified height */
+    border-radius: 20px;
     background: #d3d3d3; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -37,9 +63,10 @@
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
+    border-radius: 50px;
+    width: 20px; /* Set a specific slider handle width */
+    height: 20px; /* Slider handle height */
+    background: #57d9A3; /* Green background */
     cursor: pointer; /* Cursor on hover */
   }
 

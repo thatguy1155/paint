@@ -30,8 +30,8 @@
   <div class="canvas-wrapper">
     <Canvas brushSize={brushSize} clear={clear} color={selectedColor}/>
     <div class="bottom-content">
-      <ClearButton on:clear={clearCanvas} />
       <BrushSize on:brushSize={setBrushSize} />
+      <ClearButton on:clear={clearCanvas} />
     </div>
   </div>
   <div class="color-container">
@@ -66,6 +66,7 @@
   }
   .bottom-content{
     display:flex;
+    flex-direction:column;
     align-items: center;
     width:100%;
     height: 100px;
